@@ -27,13 +27,14 @@ on g.genre_id=txg.genre_id
 group by g.genre_id, g.name, tracks
 order by tracks desc limit 5;
 
+
 --Customer Ranking by Total Spending, rank
 
 select customer_id, first_name, last_name, rank () over (order by spended desc) as rank, spended
 
 from (select i.customer_id, c.first_name, c.last_name, sum (total) spended
       from invoice i join customer c using (customer_id)
-	  group by i.customer_id, c.first_name, c.last_name) as customer_spend
+      group by i.customer_id, c.first_name, c.last_name) as customer_spend
 
 group by customer_id, first_name, last_name, spended;
 
@@ -61,6 +62,7 @@ from track t join invoice_line il using (track_id)
 group by g.name
 order by revenues desc;
 
+
 --Customer Purchase History: Create a query that lists customers along with their most recent purchase date.
 
 select customer_id, first_name, last_name, extract (year from invoice_date) as year,
@@ -87,12 +89,14 @@ with a as (select c.customer_id, c.first_name, c.last_name, sum (i.total) sales,
  group by employee_id, first_name, last_name, sales
  order by sales desc;
 
+
 --Customer Distribution by Country: Develop a query that identifies which countries have the highest number of customers.
 
 select country, count (customer_id) nr_customers
 from customer
 group by country
 order by nr_customers desc limit 5;
+
 
 --Annual Revenue: Formulate a query that calculates the total revenue from sales per year.
 
@@ -139,7 +143,6 @@ order by total_rev desc
 /*Count the number of tracks sold grouped by genre name. Then compare the average of these numbers 
 to the median. How do they compare? This question is required.*/
 
-
 with comp as (select g.name, count (il.track_id) tracks_sold 
               from track t join invoice_line il using (track_id)
 						     join genre g using (genre_id)
@@ -167,7 +170,8 @@ with a as (select e.employee_id, sum(i.total) sales
             join invoice i using (customer_id) 
           group by e.employee_id order by sales desc)
 
-select round((max (sales) - min(sales))*100/min(sales)) from a;
+select round((max (sales) - min(sales))*100/min(sales)) 
+from a;
 
 
 /*In what year-month's (YYYY-MM) was total revenue at Chinook greater than it was in the previous 
