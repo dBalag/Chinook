@@ -1,4 +1,4 @@
-Chinook PostgreSQL queries
+Chinook PostgreSQL queries to answer business questions.
 
 
 --Total Sales per Employee, CTE
