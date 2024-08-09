@@ -1,4 +1,4 @@
-# Chinook is a ficticious company in the music stream business.
+# Chinook Data Analysis Project
 
 The Chinook Data Analysis Project is an ongoing, comprehensive data exploration and analysis initiative designed to extract valuable business insights from the Chinook music store database. This project is currently under construction, but it already showcases a diverse range of analytical techniques and tools, highlighting my proficiency in data management, analysis, and visualization.
 
